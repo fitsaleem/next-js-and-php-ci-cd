@@ -10,19 +10,19 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'cd /home/saleem/Desktop/coding-ustad/demo-app && npm install && composer install'
+                sh 'cd /home/saleem/Desktop/coding-ustad && npm install && composer install'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'cd /home/saleem/Desktop/coding-ustad/demo-app && npm run build && php artisan optimize'
+                sh 'cd /home/saleem/Desktop/coding-ustad && npm run build && php artisan optimize'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'cd /home/saleem/Desktop/coding-ustad/demo-app && pm2 restart all'
+                sh 'cd /home/saleem/Desktop/coding-ustad && pm2 restart all'
             }
         }
     }
