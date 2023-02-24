@@ -1,0 +1,44 @@
+type User {
+    id: ID!
+    name: String
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    role: String @method(name: "getRole")
+}
+
+type UserOrder {
+    id: ID!
+    created_at: String
+    user: String
+    total: Float
+    data: String
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input RegisterInput {
+    name: String
+    email: String!
+    password: String!
+    password_confirmation: String!
+}
+
+input ForgotPasswordInput {
+    email: String!
+}
+
+input ResetPasswordInput {
+    email: String!
+    password: String!
+    password_confirmation: String!
+    token: String!
+}
+
+type GeneralResponse {
+    error: Boolean!
+    data: String!
+}

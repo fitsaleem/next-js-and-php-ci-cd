@@ -1,0 +1,28 @@
+type Product {
+    id: ID!
+    title: String
+    description: String
+    category_id: Int!
+    price: Float!
+    discount: Int
+    image: String
+}
+
+type CartProduct {
+    id: ID!
+    title: String
+    price: Float!
+    discount: Int
+    quantity: Int!
+}
+
+type Category {
+    id: ID!
+    title: String!
+}
+
+input CheckoutInput {
+    cart: [CartProduct]
+    total: Int!
+    totalQuantity: Int!
+}

@@ -1,0 +1,27 @@
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+#import user.graphql
+#import product.graphql
+
+type Query {
+    categories: [Category!]! @all
+    category(id: ID @eq): Category @find
+    products(category: String): [Product!]! @field(resolver: "App\\GraphQL\\Queries\\Products")
+    product(id: ID @eq): Product @find
+    adminProducts: [Product!]! @all @admin
+    adminUsers: [User!]! @all @admin
+    adminOrders: [UserOrder!]! @admin @field(resolver: "App\\GraphQL\\Queries\\Orders")
+}
+
+type Mutation {
+    login(input: LoginInput! @spread): User! @field(resolver: "App\\GraphQL\\Mutations\\Login")
+    register(input: RegisterInput! @spread): User! @field(resolver: "App\\GraphQL\\Mutations\\Register")
+    forgotPassword(input: ForgotPasswordInput! @spread): GeneralResponse!  @field(resolver: "App\\GraphQL\\Mutations\\ForgotPassword")
+    resetPassword(input: ResetPasswordInput! @spread): GeneralResponse!  @field(resolver: "App\\GraphQL\\Mutations\\ResetPassword")
+    logout: GeneralResponse! @authenticated @field(resolver: "App\\GraphQL\\Mutations\\Logout")
+    checkout(input: CheckoutInput! @spread): GeneralResponse! @authenticated @field(resolver: "App\\GraphQL\\Mutations\\Checkout")
+}
