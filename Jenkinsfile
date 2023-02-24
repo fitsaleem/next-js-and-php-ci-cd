@@ -10,7 +10,7 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'npm install && composer install'
+                sh 'npm install'
             }
         }
 
