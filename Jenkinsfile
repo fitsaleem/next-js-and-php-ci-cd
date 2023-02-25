@@ -16,7 +16,6 @@ pipeline {
 
          stage('clone repo') {
             steps {
-                sh 'git clone https://github.com/fitsaleem/next-js-and-php-ci-cd.git'
                 sh 'pwd'
             }
         }
