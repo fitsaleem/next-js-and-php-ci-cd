@@ -10,19 +10,19 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'cd /home/saleem/next-js-and-php-ci-cd && npm install && composer install'
+                sh 'npm install && composer install'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'cd /home/saleem/next-js-and-php-ci-cd && npm run build && php artisan optimize'
+                sh 'npm run build && php artisan optimize'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'cd /home/saleem/next-js-and-php-ci-cd'
+                sh ''
         }
     }
 }
