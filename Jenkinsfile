@@ -22,7 +22,7 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'cd /var/jenkins_home/workspace/nextJS1-project && composer install'
+                sh 'cd /var/jenkins_home/workspace/nextJS1-project'
             }
         }
 
