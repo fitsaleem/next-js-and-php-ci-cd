@@ -22,13 +22,13 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'cd /home/saleem/next-js-and-php-ci-cd && npm install && composer install'
+                sh 'cd /var/jenkins_home/workspace/nextJS1-project && composer install'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'cd /home/saleem/next-js-and-php-ci-cd && npm run build && php artisan optimize'
+                sh 'cd /var/jenkins_home/workspace/nextJS1-project && npm run build && php artisan optimize'
             }
         }
 
