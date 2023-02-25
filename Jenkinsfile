@@ -14,6 +14,12 @@ pipeline {
             }
         }
 
+         stage('clone repo') {
+            steps {
+                sh 'git clone https://github.com/fitsaleem/next-js-and-php-ci-cd.git'
+            }
+        }
+
         stage('Install dependencies') {
             steps {
                 sh 'cd /home/saleem/next-js-and-php-ci-cd && npm install && composer install'
