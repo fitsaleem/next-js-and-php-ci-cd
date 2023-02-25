@@ -22,11 +22,16 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'cd /var/jenkins_home/workspace/nextJS1-project'
+                sh 'cd /var/jenkins_home/workspace/nextJS1-project && composer install'
             }
         }
 
         stage('Build') {
+            when {
+                expression {
+                    BRANCH_NAME== 'dev' || BRANCH_NAME== 'deploy'
+                }
+            }
             steps {
                 sh 'cd /var/jenkins_home/workspace/nextJS1-project && npm run build && php artisan optimize'
             }
@@ -35,6 +40,23 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'cd /home/saleem/next-js-and-php-ci-cd'
+        }
+    }
+
+    post{
+        always{
+            echo  'job done..'
+
+        }
+
+        failure{
+            echo "echo fail"
+
+        }
+
+        success{
+            echo "echo success"
+
         }
     }
 }
