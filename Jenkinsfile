@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+        stage('Check User') {
+            steps {
+                sh 'whoami'
+      }
+            }
+
         stage('Checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/fitsaleem/next-js-and-php-ci-cd.git']]])
@@ -10,19 +16,19 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'npm install && composer install'
+                sh 'cd /home/saleem/next-js-and-php-ci-cd && npm install && composer install'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run build && php artisan optimize'
+                sh 'cd /home/saleem/next-js-and-php-ci-cd && npm run build && php artisan optimize'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh ''
+                sh 'cd /home/saleem/next-js-and-php-ci-cd'
         }
     }
 }
